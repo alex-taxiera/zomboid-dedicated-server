@@ -93,7 +93,13 @@ function apply_postinstall_config() {
     "$EDIT_CONFIG" "$SERVER_CONFIG" "Open" "$PUBLIC_SERVER"
 
     # Set the Server RCON Password
-    "$EDIT_CONFIG" "$SERVER_CONFIG" "RCONPassword" "$RCON_PASSWORD"
+    if [ -z "$RCON_PASSWORD" ]
+    then
+        echo "\$RCON_PASSWORD is empty"
+    else
+        echo "\$RCON_PASSWORD is NOT empty"
+        "$EDIT_CONFIG" "$SERVER_CONFIG" "RCONPassword" "$RCON_PASSWORD"
+    fi
 
     # Set the Server RCON Port
     "$EDIT_CONFIG" "$SERVER_CONFIG" "RCONPort" "$RCON_PORT"
@@ -102,7 +108,13 @@ function apply_postinstall_config() {
     "$EDIT_CONFIG" "$SERVER_CONFIG" "PublicName" "$SERVER_NAME"
 
     # Set the Server Password
-    "$EDIT_CONFIG" "$SERVER_CONFIG" "Password" "$SERVER_PASSWORD"
+    if [ -z "$SERVER_PASSWORD" ]
+    then
+        echo "\$SERVER_PASSWORD is empty"
+    else
+        echo "\$SERVER_PASSWORD is NOT empty"
+        "$EDIT_CONFIG" "$SERVER_CONFIG" "Password" "$SERVER_PASSWORD"
+    fi
 
     # Set the maximum amount of RAM for the JVM
     sed -i "s/-Xmx.*/-Xmx${MAX_RAM}\",/g" "${SERVER_VM_CONFIG}"
