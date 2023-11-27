@@ -245,7 +245,7 @@ function set_variables() {
     else
         RCON_ENABLED="true"
         RCON_PORT=${RCON_PORT:-"27015"}
-        RCON_PASSWORD=${RCON_PASSWORD:-"changeme_rcon"}
+        RCON_PASSWORD=${RCON_PASSWORD:-""}
     fi
 
     SERVER_CONFIG="$CONFIG_DIR/Server/$SERVER_NAME.ini"
