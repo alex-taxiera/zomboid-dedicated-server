@@ -35,6 +35,9 @@ LABEL com.renegademaster.zomboid-dedicated-server.authors="Renegade-Master" \
 # Copy the source files
 COPY src /home/steam/
 
+# Setup correct apt sources
+RUN sed -i -re 's/archive.ubuntu.com|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+
 # Install Python, and take ownership of rcon binary
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-minimal iputils-ping tzdata \
